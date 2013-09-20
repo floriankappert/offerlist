@@ -7,8 +7,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	
+	<div class="row">
+		<div class="col-md-2">
+			<ul class="nav nav-pills nav-stacked">
+			  <li><%= link_to "Home", index_path, :class => 'active' %></li>
+			  <li><%= link_to "Offers", offers_path %></li>
+			</ul>
+		</div>
+		<div class="col-md-8">
+			<%= yield %>
+		</div>
+	</div>
 
-<%= yield %>
 
 </body>
 </html>
