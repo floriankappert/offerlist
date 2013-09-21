@@ -4,6 +4,7 @@
 
 <table>
   <tr>
+    <th>Offer Number</th>
     <th>Company</th>
     <th></th>
     <th></th>
@@ -12,6 +13,7 @@
 
 <% @offers.each do |offer| %>
   <tr>
+    <td><%= offer.offer_number %></td>
     <td><%= offer.company %></td>
     <td><%= link_to 'Show', offer %></td>
     <td><%= link_to 'Edit', edit_offer_path(offer) %></td>
