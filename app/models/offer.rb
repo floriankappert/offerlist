@@ -1,5 +1,5 @@
 class Offer < ActiveRecord::Base
-  attr_accessible :company, :offer_number
+  attr_accessible :company, :offer_number, :title, :project_name, :offer_date, :offer_due_date, :text, :draft
 	
   before_create :set_offer_number
 

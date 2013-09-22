@@ -12,3 +12,13 @@
  *= require_tree .
  *= require twitter/bootstrap
  */
+
+.draft {
+	td {
+		font-style: italic;
+		color: #999999;
+		a {
+			color: #999999;
+		}
+	}
+}
