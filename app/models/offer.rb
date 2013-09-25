@@ -8,4 +8,6 @@ class Offer < ActiveRecord::Base
     val = 0 if val.nil?
     self.offer_number = val + 1
   end  
+
+  scope :draft, -> { where(:draft => true)}
 end

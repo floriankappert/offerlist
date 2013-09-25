@@ -3,6 +3,7 @@ class OffersController < ApplicationController
   # GET /offers.json
   def index
     @offers = Offer.paginate(:page => params[:page], :per_page => 20, :order => 'offer_number DESC')
+    @drafts = Offer.draft
   end
 
   def show
