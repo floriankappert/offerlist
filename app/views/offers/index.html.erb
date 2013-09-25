@@ -13,7 +13,7 @@
   </tr>
 
 <% @offers.each do |offer| %>
-  <tr <%= is_draft(offer) %>>
+  <tr class="<%= is_draft(offer) %>">
     <td><%= offer.offer_number %></td>
     <td><%= offer.company %></td>
     <td><%= offer.title %></td>
