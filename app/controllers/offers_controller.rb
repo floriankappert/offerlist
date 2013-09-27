@@ -21,24 +21,21 @@ class OffersController < ApplicationController
   def create
     @offer = Offer.new(params[:offer])
 
-    respond_to do |format|
-      if @offer.save
-        format.html { redirect_to @offer, notice: 'Offer was successfully created.' }
-      else
-        format.html { render action: "new" }
-      end
+    if @offer.save
+      redirect_to offers_path, notice: 'Offer was successfully created.'
+    else
+      render action: "new"
     end
+    
   end
 
   def update
     @offer = Offer.find(params[:id])
 
-    respond_to do |format|
-      if @offer.update_attributes(params[:offer])
-        format.html { redirect_to @offer, notice: 'Offer was successfully updated.' }
-      else
-        format.html { render action: "edit" }
-      end
+    if @offer.update_attributes(params[:offer])
+      redirect_to @offer, notice: 'Offer was successfully updated.'
+    else
+      render action: "edit" 
     end
   end
 
@@ -46,8 +43,7 @@ class OffersController < ApplicationController
     @offer = Offer.find(params[:id])
     @offer.destroy
 
-    respond_to do |format|
-      format.html { redirect_to offers_url }
-    end
+    redirect_to offers_url
+    
   end
 end
