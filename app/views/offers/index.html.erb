@@ -1,6 +1,9 @@
 <h1>
   Offers
   <%= link_to icon("new"), new_offer_path(@offer), :class => "btn btn-default btn-sm" %> 
+  <div class="toolbox">
+    <%= render 'searchform' %>
+  </div>
 </h1>
 
 <p id="notice"><%= notice %></p>
@@ -29,7 +32,10 @@
   <tbody>
   <% @offers.each do |offer| %>
     <tr class="<%= is_draft(offer) %>">
-      <td><%= offer.offer_number %></td>
+      <td>
+        <%= offer.offer_number %>
+        <%= offer.draft ? raw('<span class="label label-info">Draft</span>') : '' %>
+      </td>
       <td><%= offer.company %></td>
       <td><%= offer.title %></td>
       <td style="text-align: right;">
@@ -68,7 +74,10 @@
   <tbody>
   <% @drafts.each do |draft| %> 
     <tr>
-      <td><%= draft.offer_number %></td>
+      <td>
+        <%= draft.offer_number %>
+        <%= draft.draft ? raw('<span class="label label-info">Draft</span>') : '' %>
+      </td>
       <td><%= draft.company %></td>
       <td><%= draft.title %></td>
       <td style="text-align: right;">

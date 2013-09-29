@@ -1,0 +1,38 @@
+<h1>
+  <%= link_to icon("back"), offers_path, :class => "btn btn-default" %>
+  Search Results
+  <div class="toolbox">
+  	<%= render 'searchform' %>
+  </div>
+</h1>
+
+<p id="notice"><%= notice %></p>
+
+<table class="table table-striped table-hover table-condensed">
+  <thead>
+    <tr>
+      <th><%= sortable "offer_number" %></th>
+      <th><%= sortable "company" %></th>
+      <th>Title</th>
+      <th></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+  <% @offers.each do |offer| %>
+    <tr class="<%= is_draft(offer) %>">
+      <td>
+        <%= offer.offer_number %>
+        <%= offer.draft ? raw('<span class="label label-info">Draft</span>') : '' %>
+      </td>
+      <td><%= offer.company %></td>
+      <td><%= offer.title %></td>
+      <td style="text-align: right;">
+      <%= link_to icon("show"), offer, :class => "btn btn-default btn-small" %>
+      <%= link_to icon("edit"), edit_offer_path(offer), :class => "btn btn-default btn-small" %>
+      <%= link_to icon("destroy"), offer, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-small" %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

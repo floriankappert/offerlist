@@ -10,6 +10,23 @@
  *
  *= require_self
  *= require_tree .
+ *= require bootstrap-datepicker
  */
 
  @import "twitter/bootstrap";
+
+
+ h1 {
+ 	.toolbox {
+ 		max-width: 50%;
+ 		float: right;
+ 		clear: right;
+
+ 		form {
+ 			float: right;
+ 			clear: right;
+ 			margin: 0 0.1em;
+ 			box-sizing: border-box;
+ 		}
+ 	}
+ }

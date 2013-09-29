@@ -1,0 +1,7 @@
+<%= form_tag("/offers/search", method: "get", :class => "form-inline") do %>
+  <div class="form-group">
+  	<%= label_tag :q, 'Search Companies:', :class => "sr-only" %>
+    <%= text_field_tag :q, @searchstring, :class => "form-control", :placeholder => "Name of Company" %>
+  </div>
+  <%= submit_tag "Search", :class => "btn btn-success" %>
+<% end %>

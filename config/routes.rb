@@ -3,7 +3,11 @@ Offerlist::Application.routes.draw do
 
   resources :offers do
   	member do
-  		put "activate" 
+  		get "activate"
+  	end
+
+  	collection do 
+  		get "search"
   	end
   end
 

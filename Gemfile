@@ -16,6 +16,7 @@ group :assets do
 end
 
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails', :github => 'anjlab/bootstrap-rails'
+gem 'bootstrap-datepicker-rails'
 
 group :development do
   gem 'quiet_assets'

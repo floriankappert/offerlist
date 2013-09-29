@@ -10,12 +10,29 @@ class OffersController < ApplicationController
     @offer = Offer.find(params[:id])
   end
 
+  def search 
+    @searchstring = params[:q]
+    @offers = Offer.where("company like ?", @searchstring)
+  end
+
   def new
     @offer = Offer.new
   end
 
   def edit
     @offer = Offer.find(params[:id])
+  end
+
+  def activate 
+    @offer = Offer.find(params[:id])
+    @offer.draft = false
+
+    if @offer.update_attributes(params[:offer])
+      redirect_to offer_path, notice: 'Offer was successfully activated.'
+    else
+      redirect_to offers_path, notice: 'Offer could not be activated.'
+    end
+
   end
 
   def create
@@ -53,6 +70,6 @@ class OffersController < ApplicationController
   end
   
   def sort_direction
-    %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+    %w[asc desc].include?(params[:direction]) ?  params[:direction] : "desc"
   end
 end
