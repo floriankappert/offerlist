@@ -21,5 +21,5 @@ class Offer < ActiveRecord::Base
 
   scope :draft, -> { where(:draft => true)}
 
-  self.per_page = 10
+  self.per_page = 20
 end

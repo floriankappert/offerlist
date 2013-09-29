@@ -1,20 +1,17 @@
-<h1>
+<% content_for :title, "Offers" %>
+<% content_for :description, "Listing all offers from OfferList" %>
+
+<h3>
   Offers
   <%= link_to icon("new"), new_offer_path(@offer), :class => "btn btn-default btn-sm" %> 
   <div class="toolbox">
     <%= render 'searchform' %>
   </div>
-</h1>
+</h3>
 
 <p id="notice"><%= notice %></p>
 
 <% unless params[:drafts] %>
-<%= 
-  will_paginate @offers, 
-  renderer: BootstrapPagination::Rails, 
-  bootstrap: 3,
-  :param_name => :offers_page 
-%>
 <ul class="nav nav-tabs">
   <li class="active"><%= link_to "Offers", offers_path %></li>
   <li><%= link_to 'Drafts', offers_path(:drafts => 1) %></li>
@@ -41,22 +38,24 @@
       <td style="text-align: right;">
       <%= link_to icon("show"), offer, :class => "btn btn-default btn-small" %>
       <%= link_to icon("edit"), edit_offer_path(offer), :class => "btn btn-default btn-small" %>
+      <% if offer.draft %>
       <%= link_to icon("destroy"), offer, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-small" %>
+      <% end %>
       </td>
     </tr>
   <% end %>
   </tbody>
 </table>
 
+<%= 
+  will_paginate @offers, 
+  renderer: BootstrapPagination::Rails, 
+  bootstrap: 3,
+  :param_name => :offers_page 
+%>
 
 <% else %>
 
-<%= 
-  will_paginate @drafts, 
-  renderer: BootstrapPagination::Rails, 
-  bootstrap: 3,
-  :param_name => :drafts_page 
-%>
 <ul class="nav nav-tabs">
   <li><%= link_to "Offers", offers_path %></li>
   <li class="active"><%= link_to 'Drafts', offers_path(:drafts => 1) %></li>
@@ -89,4 +88,11 @@
   <% end %>
   </tbody>
 </table>
+
+<%= 
+  will_paginate @drafts, 
+  renderer: BootstrapPagination::Rails, 
+  bootstrap: 3,
+  :param_name => :drafts_page 
+%>
 <% end %>

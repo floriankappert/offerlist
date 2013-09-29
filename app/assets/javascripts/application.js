@@ -15,3 +15,7 @@
 //= require_tree .
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.de
+
+  $(document).ready(function(){
+    $(".pagination ul").addClass("pagination");
+  })

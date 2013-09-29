@@ -4,4 +4,5 @@
 		    format: 'dd.mm.yyyy'
 		}
     );
+    $(".pagination ul").addClass("pagination");
   })

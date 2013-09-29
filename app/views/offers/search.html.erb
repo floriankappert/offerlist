@@ -1,10 +1,12 @@
-<h1>
+<% content_for :title, "Searching Offers" %>
+
+<h3>
   <%= link_to icon("back"), offers_path, :class => "btn btn-default" %>
   Search Results
   <div class="toolbox">
   	<%= render 'searchform' %>
   </div>
-</h1>
+</h3>
 
 <p id="notice"><%= notice %></p>
 
