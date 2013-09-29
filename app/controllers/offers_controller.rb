@@ -1,8 +1,8 @@
 class OffersController < ApplicationController
-  # GET /offers
-  # GET /offers.json
+  helper_method :sort_column, :sort_direction
+
   def index
-    @offers = Offer.paginate(:page => params[:page], :per_page => 20, :order => 'offer_number DESC')
+    @offers = Offer.order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
     @drafts = Offer.draft
   end
 
@@ -45,5 +45,14 @@ class OffersController < ApplicationController
 
     redirect_to offers_url
     
+  end
+
+  private
+  def sort_column
+    Offer.column_names.include?(params[:sort]) ? params[:sort] : "offer_number"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
   end
 end

@@ -1,47 +1,71 @@
-<h1>Listing offers</h1>
+<h1>
+  Offers
+  <%= link_to icon("new"), new_offer_path(@offer), :class => "btn btn-default btn-sm" %> 
+</h1>
 
 <p id="notice"><%= notice %></p>
 
 <%= will_paginate @offers, renderer: BootstrapPagination::Rails, bootstrap: 3 %>
-
-<table>
-  <tr>
-    <th>Offer Number</th>
-    <th>Company</th>
-    <th>Title</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @offers.each do |offer| %>
-  <tr class="<%= is_draft(offer) %>">
-    <td><%= offer.offer_number %></td>
-    <td><%= offer.company %></td>
-    <td><%= offer.title %></td>
-    <td><%= link_to 'Show', offer %></td>
-    <td><%= link_to 'Edit', edit_offer_path(offer) %></td>
-    <td><%= link_to 'Destroy', offer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-  <tr>
-    <td colspan="7">Drafts</td>
-  </tr>
-<% @drafts.each do |draft| %>
-
-  <tr>
-    <td><%= draft.offer_number %></td>
-    <td><%= draft.company %></td>
-    <td><%= draft.title %></td>
-    <td><%= link_to 'Show', draft %></td>
-    <td><%= link_to 'Edit', edit_offer_path(draft) %></td>
-    <td><%= link_to 'Destroy', draft, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-
-<% end %>
-
+<% unless params[:drafts] %>
+<ul class="nav nav-tabs">
+  <li class="active"><%= link_to "Offers", offers_path %></li>
+  <li><%= link_to 'Drafts', offers_path(:drafts => 1) %></li>
+</ul>
+<table class="table table-striped table-hover table-condensed">
+  <thead>
+    <tr>
+      <th><%= sortable "offer_number" %></th>
+      <th><%= sortable "company" %></th>
+      <th>Title</th>
+      <th></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+  <% @offers.each do |offer| %>
+    <tr class="<%= is_draft(offer) %>">
+      <td><%= offer.offer_number %></td>
+      <td><%= offer.company %></td>
+      <td><%= offer.title %></td>
+      <td style="text-align: right;">
+      <%= link_to icon("show"), offer, :class => "btn btn-default btn-small" %>
+      <%= link_to icon("edit"), edit_offer_path(offer), :class => "btn btn-default btn-small" %>
+      <%= link_to icon("destroy"), offer, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-small" %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
 </table>
 
-<br />
 
-<%= link_to 'New Offer', new_offer_path %>
+<% else %>
+<ul class="nav nav-tabs">
+  <li><%= link_to "Offers", offers_path %></li>
+  <li class="active"><%= link_to 'Drafts', offers_path(:drafts => 1) %></li>
+</ul>
+<table class="table table-striped table-hover table-condensed">
+  <thead>
+    <tr>
+      <th><%= sortable "offer_number" %></th>
+      <th><%= sortable "company" %></th>
+      <th>Title</th>
+      <th></th>
+    </tr>
+  </thead>
+  
+  <tbody>
+  <% @drafts.each do |draft| %> 
+    <tr>
+      <td><%= draft.offer_number %></td>
+      <td><%= draft.company %></td>
+      <td><%= draft.title %></td>
+      <td style="text-align: right;">
+        <%= link_to icon("show"), draft, :class => "btn btn-default btn-small" %>
+        <%= link_to icon("edit"), edit_offer_path(draft), :class => "btn btn-default btn-small" %>
+        <%= link_to icon("destroy"), draft, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-small" %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<% end %>
