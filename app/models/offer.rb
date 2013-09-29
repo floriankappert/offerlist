@@ -10,4 +10,6 @@ class Offer < ActiveRecord::Base
   end  
 
   scope :draft, -> { where(:draft => true)}
+
+  self.per_page = 3
 end

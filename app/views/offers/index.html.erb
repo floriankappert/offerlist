@@ -5,8 +5,13 @@
 
 <p id="notice"><%= notice %></p>
 
-<%= will_paginate @offers, renderer: BootstrapPagination::Rails, bootstrap: 3 %>
 <% unless params[:drafts] %>
+<%= 
+  will_paginate @offers, 
+  renderer: BootstrapPagination::Rails, 
+  bootstrap: 3,
+  :param_name => :offers_page 
+%>
 <ul class="nav nav-tabs">
   <li class="active"><%= link_to "Offers", offers_path %></li>
   <li><%= link_to 'Drafts', offers_path(:drafts => 1) %></li>
@@ -39,6 +44,13 @@
 
 
 <% else %>
+
+<%= 
+  will_paginate @drafts, 
+  renderer: BootstrapPagination::Rails, 
+  bootstrap: 3,
+  :param_name => :drafts_page 
+%>
 <ul class="nav nav-tabs">
   <li><%= link_to "Offers", offers_path %></li>
   <li class="active"><%= link_to 'Drafts', offers_path(:drafts => 1) %></li>

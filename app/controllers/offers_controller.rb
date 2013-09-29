@@ -2,8 +2,8 @@ class OffersController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @offers = Offer.order(sort_column + ' ' + sort_direction).paginate(:page => params[:page])
-    @drafts = Offer.draft
+    @offers = Offer.order(sort_column + ' ' + sort_direction).paginate(:page => params[:offers_page])
+    @drafts = Offer.draft.order(sort_column + ' ' + sort_direction).paginate(:page => params[:drafts_page])
   end
 
   def show
