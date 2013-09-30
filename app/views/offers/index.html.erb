@@ -39,7 +39,7 @@
       <%= link_to icon("show"), offer, :class => "btn btn-default btn-small" %>
       <%= link_to icon("edit"), edit_offer_path(offer), :class => "btn btn-default btn-small" %>
       <% if offer.draft %>
-      <%= link_to icon("destroy"), offer, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-small" %>
+      <%= link_to icon("destroy"), delete_offer_path(offer), data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-small" %>
       <% end %>
       </td>
     </tr>

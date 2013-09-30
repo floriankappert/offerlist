@@ -56,6 +56,19 @@ class OffersController < ApplicationController
     end
   end
 
+  def delete 
+    @offer = Offer.find(params[:id])
+    @offer.data_deleted = true
+
+    if @offer.save
+      msg = 'Offer was successfully deleted.'
+    else
+      msg = 'Offer could not be deleted.'
+    end
+
+    redirect_to offer_path, notice: msg  
+  end
+
   def destroy
     @offer = Offer.find(params[:id])
     @offer.destroy

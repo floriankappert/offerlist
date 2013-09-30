@@ -4,6 +4,7 @@ Offerlist::Application.routes.draw do
   resources :offers do
   	member do
   		get "activate"
+  		get "delete"
   	end
 
   	collection do 

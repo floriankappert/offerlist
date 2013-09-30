@@ -13,6 +13,8 @@ class Offer < ActiveRecord::Base
     self.offer_number = val + 1
   end  
 
+  default_scope where(:data_deleted => false)
+
   scope :draft, -> { where(:draft => true)}
 
   self.per_page = 10
