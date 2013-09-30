@@ -66,7 +66,7 @@ class OffersController < ApplicationController
       msg = 'Offer could not be deleted.'
     end
 
-    redirect_to offer_path, notice: msg  
+    redirect_to offers_path, notice: msg  
   end
 
   def destroy
