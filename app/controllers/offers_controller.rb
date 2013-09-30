@@ -11,8 +11,7 @@ class OffersController < ApplicationController
   end
 
   def search 
-    @searchstring = params[:q]
-    @offers = Offer.where("company like ?", @searchstring)
+    @offers = Offer.where("lower (company) like ?", params[:q].downcase)
   end
 
   def new
@@ -27,12 +26,13 @@ class OffersController < ApplicationController
     @offer = Offer.find(params[:id])
     @offer.draft = false
 
-    if @offer.update_attributes(params[:offer])
-      redirect_to offer_path, notice: 'Offer was successfully activated.'
+    if @offer.save
+      msg = 'Offer was successfully activated.'
     else
-      redirect_to offers_path, notice: 'Offer could not be activated.'
+      msg = 'Offer could not be activated.'
     end
 
+    redirect_to offer_path, notice: msg 
   end
 
   def create
