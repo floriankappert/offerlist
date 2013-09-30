@@ -8,7 +8,7 @@ class Offer < ActiveRecord::Base
   before_create :set_offer_number
 
   def set_offer_number
-  	val = Offer.maximum(:offer_number)
+  	val = Offer.unscoped.maximum(:offer_number)
     val = 0 if val.nil?
     self.offer_number = val + 1
   end  
