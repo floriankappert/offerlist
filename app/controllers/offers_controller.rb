@@ -8,6 +8,10 @@ class OffersController < ApplicationController
 
   def show
     @offer = Offer.find(params[:id])
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @offer}
+    end
   end
 
   def search 
