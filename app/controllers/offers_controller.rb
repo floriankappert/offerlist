@@ -69,14 +69,6 @@ class OffersController < ApplicationController
     redirect_to offers_path, notice: msg  
   end
 
-  def destroy
-    @offer = Offer.find(params[:id])
-    @offer.destroy
-
-    redirect_to offers_url
-    
-  end
-
   private
   def sort_column
     Offer.column_names.include?(params[:sort]) ? params[:sort] : "offer_number"
