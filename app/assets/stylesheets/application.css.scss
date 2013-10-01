@@ -15,20 +15,11 @@
 
  @import "twitter/bootstrap";
 
+header,
+footer {
+	background-color: #fafafa;
+}
 
- h1,
- h2,
- h3 {
- 	.toolbox {
- 		max-width: 50%;
- 		float: right;
- 		clear: right;
-
- 		form {
- 			float: right;
- 			clear: right;
- 			margin: 0 0.1em;
- 			box-sizing: border-box;
- 		}
- 	}
- }
+header.navbar {
+	margin-bottom: 0 !important;
+}

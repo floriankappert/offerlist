@@ -16,6 +16,8 @@ module OffersHelper
 		"<span class='glyphicon glyphicon-plus'></span>".html_safe
 		when "back"
 		"<span class='glyphicon glyphicon-chevron-left'></span>".html_safe
+		when "list"
+		"<span class='glyphicon glyphicon-th-list'></span>".html_safe
 		else
 		"<span class='glyphicon glyphicon-tree-conifer'></span>".html_safe			
 		end

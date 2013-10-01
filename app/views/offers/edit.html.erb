@@ -1,7 +1,11 @@
 <% content_for :title, "Edit Offer " + @offer.offer_number.to_s %>
-<h1>Editing offer</h1>
+
+<% content_for :header do %>
+<h3>
+	<%= link_to icon("list"), offers_path, :class => "btn btn-default" %>
+	<%= link_to icon("back"), offer_path(@offer), :class => "btn btn-default" %>
+	Edit offer
+</h3>
+<% end %>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @offer %> |
-<%= link_to 'Back', offers_path %>

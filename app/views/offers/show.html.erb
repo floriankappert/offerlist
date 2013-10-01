@@ -1,18 +1,23 @@
 <% content_for :title, @offer.offer_number.to_s + " " + @offer.title.to_s %>
 
+<% content_for :header do %>
 <h3>
   <%= link_to icon("back"), offers_path, :class => "btn btn-default" %>
+  <%= link_to icon("list"), offers_path, :class => "btn btn-default" %>
   Offer 
-  <div class="toolbox">
-    <%= link_to icon("edit"), edit_offer_path(@offer), :class => "btn btn-default" %>   
+  <%= link_to icon("edit"), edit_offer_path(@offer), :class => "btn btn-default" %>
+  <div class="pull-right">
+      <%= render 'searchform' %>
+  </div>
+  <div class="pull-right">
     <% if @offer.draft %>
-    <%= link_to "ACTIVATE", activate_offer_path(@offer), :class => "btn btn-danger" %>
+    <%= link_to "ACTIVATE", activate_offer_path(@offer), :class => "btn btn-danger", :style => "margin-right: 0.5em;" %>
     <% else %>
     <span class="label label-info">Activated</span>
     <% end %>
   </div>
-  
 </h3>  
+<% end %>
 
 <p id="notice"><%= notice %></p>
 

@@ -1,12 +1,15 @@
 <% content_for :title, "Searching Offers" %>
 
+<% content_for :header do %>
 <h3>
+  <%= link_to icon("list"), offers_path, :class => "btn btn-default" %>
   <%= link_to icon("back"), offers_path, :class => "btn btn-default" %>
   Search Results
-  <div class="toolbox">
+  <div class="pull-right">
   	<%= render 'searchform' %>
   </div>
 </h3>
+<% end %>
 
 <p id="notice"><%= notice %></p>
 

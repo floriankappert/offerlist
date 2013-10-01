@@ -1,8 +1,14 @@
 <% content_for :title, "Add new Offer" %>
 
+
+<% content_for :header do %>
 <h3>
   <%= link_to icon("back"), offers_path, :class => "btn btn-default btn-sm" %>
 	New offer
+	<div class="pull-right">
+      <%= render 'searchform' %>
+    </div>
 </h3>
+<% end %>
 
 <%= render 'form' %>

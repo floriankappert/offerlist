@@ -4,6 +4,7 @@
   <title><%= content_for?(:title) ? yield(:title) : "OfferList" %></title>
   
   <meta name="description" content="<%= content_for?(:description) ? yield(:description) : 'OfferList is the hottest shit for listing offers.' %>" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
@@ -11,17 +12,42 @@
 </head>
 <body>
 	
-	<div class="row">
-		<div class="col-md-2">
-			<ul class="nav nav-pills nav-stacked">
-			  <li><%= link_to "Offers", offers_path %></li>
-			</ul>
+	<header class="navbar">
+		<div class="container">
+			<div class="navbar-header">
+				<%= link_to "OFFERLIST", offers_path, :class => "navbar-brand" %>
+			</div>
+			<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+		      <ul class="nav navbar-nav">
+		        <li class="active">
+		          <%= link_to "Offers", offers_path %>
+		        </li>
+		      </ul>
+		    </nav>
 		</div>
-		<div class="col-md-8">
-			<%= yield %>
+	</header>
+	
+	<div class="row">
+		<div class="container">
+			<div class="col-md-10">				
+				<% if content_for?(:header) %>
+					<div class="page-header">
+						<%= yield :header %>
+					</div>
+				<% end %>
+				<%= yield %>
+			</div>
 		</div>
 	</div>
 
-
+	<footer>
+		<div class="container">
+			<div class="col-md-10">
+				<div class="page-footer">
+					Offerlist by me (C) 2013.
+				</div>
+			</div>
+		</div>
+	</footer>
 </body>
 </html>
