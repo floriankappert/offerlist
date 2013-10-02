@@ -23,7 +23,7 @@
 
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading"><%= @offer.offer_number %> | <%= @offer.title %> | <%= link_to "download json object", @offer %> | <%= @offer.draft ? "Draft" : "Activated" %></div>
+  <div class="panel-heading"><%= @offer.offer_number %> | <%= @offer.title %> | <%= link_to "download json object", polymorphic_path( @offer, :format => :json ), :target => "_blank" %> | <%= @offer.draft ? "Draft" : "Activated" %></div>
     
     <table class="table">
       <tbody>
