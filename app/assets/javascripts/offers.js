@@ -5,5 +5,8 @@
 		    startDate: '0d'
 		}
     );
+    $( "#offer_company" ).autocomplete({
+      source: ['abc','cde','fgh']
+    });
 
   })
