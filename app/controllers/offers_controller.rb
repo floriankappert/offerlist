@@ -8,9 +8,7 @@ class OffersController < ApplicationController
 
   def index_remote
     @offers = Offer.where("lower (company) like ?", "%#{params[:term]}%").group("company").select("company, count(1) as total")
-    
     render json: @offers.map{|x| {:company => x.company, :total => x.total}}
-
   end
 
   def show
@@ -27,6 +25,8 @@ class OffersController < ApplicationController
 
   def new
     @offer = Offer.new
+    @offer.offer_date = Time.now
+    @offer.offer_due_date = Time.now + 14.days
   end
 
   def edit
