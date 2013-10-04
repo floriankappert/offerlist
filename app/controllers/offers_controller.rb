@@ -6,6 +6,13 @@ class OffersController < ApplicationController
     @drafts = Offer.draft.order(sort_column + ' ' + sort_direction).paginate(:page => params[:drafts_page])
   end
 
+  def index_remote
+    @offers = Offer.where("lower (company) like ?", "%#{params[:term]}%").group("company").select("company, count(1) as total")
+    
+    render json: @offers.map{|x| {:company => x.company, :total => x.total}}
+
+  end
+
   def show
     @offer = Offer.find(params[:id])
     respond_to do |format|

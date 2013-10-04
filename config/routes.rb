@@ -9,6 +9,7 @@ Offerlist::Application.routes.draw do
 
   	collection do 
   		get "search"
+      get "index_remote"
   	end
   end
 

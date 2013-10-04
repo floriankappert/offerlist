@@ -16,7 +16,7 @@
 
   <div class="form-group">
     <%= f.label :company, :class => "col-lg-2 control-label" %>
-    <div class="col-lg-6"><%= f.text_field :company, :class => "form-control", :placeholder => "Company Name" %></div>
+    <div class="col-lg-6"><%= f.text_field :company, :class => "form-control", :placeholder => "Company Name", data: {autocomplete_source: index_remote_offers_path } %></div>
   </div>
   <div class="form-group">
     <%= f.label :title, :class => "col-lg-2 control-label" %>
