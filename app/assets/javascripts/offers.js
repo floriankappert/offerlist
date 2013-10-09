@@ -5,6 +5,7 @@
 		    startDate: '0d'
 		}
     );
+    if($("#offer_company").length > 0) {
     $( "#offer_company" ).autocomplete({
        source: $("#offer_company").data('autocomplete-source'),
        focus: function( event, ui ) {
@@ -21,5 +22,5 @@
         .append( "<a>" + item.company + "<br>" + item.company + "(" + item.total + ")</a>" )
         .appendTo( ul );
     };;
-
+   }
   })

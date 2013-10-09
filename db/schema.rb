@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130930205909) do
+ActiveRecord::Schema.define(:version => 20131004110823) do
+
+  create_table "offer_items", :force => true do |t|
+    t.integer  "offer_id"
+    t.string   "title"
+    t.string   "description"
+    t.integer  "position"
+    t.decimal  "net"
+    t.decimal  "vat"
+    t.integer  "vatrate"
+    t.decimal  "gross"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "offer_items", ["offer_id"], :name => "index_offer_items_on_offer_id"
 
   create_table "offers", :force => true do |t|
     t.string   "company"

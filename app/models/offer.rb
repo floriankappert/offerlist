@@ -1,6 +1,8 @@
 class Offer < ActiveRecord::Base
   attr_accessible :company, :offer_number, :title, :project_name, :offer_date, :offer_due_date, :text
 
+  has_many :offer_items
+
   validates :company, :presence => {:message => 'Please enter the company name'}
   validates :title, :presence => {:message => 'Please enter the title of your offer'}
   validates :offer_date, :presence => {:message => 'Please enter the offer date'}

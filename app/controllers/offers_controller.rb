@@ -13,6 +13,9 @@ class OffersController < ApplicationController
 
   def show
     @offer = Offer.find(params[:id])
+
+    @offer_item = @offer.offer_items.new
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @offer}
@@ -67,7 +70,7 @@ class OffersController < ApplicationController
     end
   end
 
-  def delete 
+  def destroy 
     @offer = Offer.find(params[:id])
     @offer.data_deleted = true
 

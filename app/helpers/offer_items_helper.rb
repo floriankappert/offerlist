@@ -1,0 +1,2 @@
+module OfferItemsHelper
+end

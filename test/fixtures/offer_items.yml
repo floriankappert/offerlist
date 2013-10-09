@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  offer: 
+  description: MyString
+  position: 1
+  net: 9.99
+  vat: 9.99
+  vatrate: 1
+  gross: 9.99
+
+two:
+  offer: 
+  description: MyString
+  position: 1
+  net: 9.99
+  vat: 9.99
+  vatrate: 1
+  gross: 9.99

@@ -7,7 +7,7 @@
   Offer 
   <%= link_to icon("edit"), edit_offer_path(@offer), :class => "btn btn-default" %>
   <div class="pull-right">
-      <%= render 'searchform' %>
+      <%= render 'offers/searchform' %>
   </div>
   <div class="pull-right">
     <% if @offer.draft %>
@@ -19,28 +19,116 @@
 </h3>  
 <% end %>
 
+<% if @offer_item.errors.any? %>
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@offer_item.errors.count, "error") %> prohibited this offer from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @offer_item.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+
 <p id="notice"><%= notice %></p>
 
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading"><%= @offer.offer_number %> | <%= @offer.title %> | <%= link_to "download json object", polymorphic_path( @offer, :format => :json ), :target => "_blank" %> | <%= @offer.draft ? "Draft" : "Activated" %></div>
+  <div class="panel-heading"><%= @offer.offer_number %> | <%= @offer.title %> | <%= link_to "download json object", polymorphic_path( @offer, :format => :json ), :target => "_blank" %> | <%= @offer.draft ? "Draft" : "Activated" %>
+  </div>
     
-    <table class="table">
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>Company</th>
+        <td><%= @offer.company %></td>
+      </tr>
+      <tr>
+        <th>Projectname</th>
+        <td><%= @offer.project_name %></td>
+      </tr>
+      <tr>
+        <th>PreText</th>
+        <td><%= @offer.text %></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="panel-heading">
+    <%= form_for [@offer, @offer_item], :remote => true, :html => { :role => "form", :class => "form-horizontal" } do |f| %>
+
+      <div class="form-group">
+        <%= f.label :position, :class => "col-lg-2 control-label" %>
+        <div class="col-lg-6"><%= f.text_field :position, :class => "form-control", :placeholder => "Position" %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :title, :class => "col-lg-2 control-label" %>
+        <div class="col-lg-6"><%= f.text_field :title, :class => "form-control", :placeholder => "Title" %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :gross, :class => "col-lg-2 control-label" %>
+        <div class="col-lg-6"><%= f.text_field :gross, :class => "form-control", :placeholder => "gross price" %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :net, :class => "col-lg-2 control-label" %>
+        <div class="col-lg-6"><%= f.text_field :net, :class => "form-control", :placeholder => "net price" %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :vat, :class => "col-lg-2 control-label" %>
+        <div class="col-lg-6"><%= f.text_field :vat, :class => "form-control", :placeholder => "vat" %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :vatrate, :class => "col-lg-2 control-label" %>
+        <div class="col-lg-6"><%= f.text_field :vatrate, :class => "form-control", :placeholder => "vatrate" %></div>
+      </div>
+      <div class="form-group">
+        <%= f.label :description, :class => "col-lg-2 control-label" %>
+        <div class="col-lg-6"><%= f.text_area :description, :class => "form-control", :placeholder => "description", :rows => "3" %></div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-6">
+          <%= f.submit :class => "btn btn-default btn-success" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="panel-heading" style="text-align: center;">Offeritems</div>
+    <table class="table ">
+      <thead>
+        <th>Pos</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Net</th>
+        <th>Vat</th>
+        <th>Rate</th>
+        <th>Gross</th>
+        <th>Gross</th>
+      </thead>
       <tbody>
-        <tr>
-          <th>Company</th>
-          <td><%= @offer.company %></td>
+        <% @offer.offer_items.each do |offer_item| %>
+        <tr id="offer_item_<%= offer_item.id %>">
+          <td><%= offer_item.position %></td>
+          <td><%= offer_item.title %></td>
+          <td><%= offer_item.description %></td>
+          <td><%= offer_item.net %></td>
+          <td><%= offer_item.vat %></td>
+          <td><%= offer_item.vatrate %></td>
+          <td><%= offer_item.gross %></td>
+          <td><%= link_to icon("destroy"), [offer_item.offer, offer_item], method: :delete, data: { confirm: 'Are you sure to delete this offer item?' }, :class => "btn btn-danger btn-small", :remote => true %></td>
         </tr>
+        <% if offer_item.description %>
         <tr>
-          <th>Projectname</th>
-          <td><%= @offer.project_name %></td>
+          <td colspan="7"><%= offer_item.description %></td>
         </tr>
-        <tr>
-          <th>PreText</th>
-          <td><%= @offer.text %></td>
-        </tr>
+        <% end %>
+        <% end %>
       </tbody>
     </table>
+  </div>  
   <div class="panel-heading" style="text-align: center;">Credentials</div>
     <table class="table ">
       <thead>
@@ -56,4 +144,5 @@
         </tr>
       </tbody>
     </table>
+  </div>
 </div>
