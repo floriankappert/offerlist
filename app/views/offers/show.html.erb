@@ -96,53 +96,41 @@
       </div>
     <% end %>
   </div>
+  <% if @offer.offer_items.present? %>
   <div class="panel-heading" style="text-align: center;">Offeritems</div>
-    <table class="table ">
-      <thead>
-        <th>Pos</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Net</th>
-        <th>Vat</th>
-        <th>Rate</th>
-        <th>Gross</th>
-        <th>Gross</th>
-      </thead>
-      <tbody>
-        <% @offer.offer_items.each do |offer_item| %>
-        <tr id="offer_item_<%= offer_item.id %>">
-          <td><%= offer_item.position %></td>
-          <td><%= offer_item.title %></td>
-          <td><%= offer_item.description %></td>
-          <td><%= offer_item.net %></td>
-          <td><%= offer_item.vat %></td>
-          <td><%= offer_item.vatrate %></td>
-          <td><%= offer_item.gross %></td>
-          <td><%= link_to icon("destroy"), [offer_item.offer, offer_item], method: :delete, data: { confirm: 'Are you sure to delete this offer item?' }, :class => "btn btn-danger btn-small", :remote => true %></td>
-        </tr>
-        <% if offer_item.description %>
-        <tr>
-          <td colspan="7"><%= offer_item.description %></td>
-        </tr>
-        <% end %>
-        <% end %>
-      </tbody>
-    </table>
-  </div>  
+  <table class="table ">
+    <thead>
+      <th>Pos</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Net</th>
+      <th>Vat</th>
+      <th>Rate</th>
+      <th>Gross</th>
+      <th></th>
+    </thead>
+    <tbody  id="offer_item_tbody">
+      <% @offer.offer_items.each do |offer_item| %>
+        <%= render offer_item %>
+      <% end %>
+    </tbody>
+  </table>
+  <% end %>
+</div>
+<div class="panel panel-default">
   <div class="panel-heading" style="text-align: center;">Credentials</div>
-    <table class="table ">
-      <thead>
-        <th>Offer created at</th>
-        <th>Offer Date</th>
-        <th>Due Date</th>
-      </thead>
-      <tbody>
-        <tr>
-          <td><%= @offer.created_at.to_formatted_s() %></td>
-          <td><%= @offer.offer_date %></td>
-          <td><%= @offer.offer_due_date %></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <table class="table">
+    <thead>
+      <th>Offer created at</th>
+      <th>Offer Date</th>
+      <th>Due Date</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @offer.created_at.to_formatted_s() %></td>
+        <td><%= @offer.offer_date %></td>
+        <td><%= @offer.offer_due_date %></td>
+      </tr>
+    </tbody>
+  </table>
 </div>

@@ -14,7 +14,7 @@ class OffersController < ApplicationController
   def show
     @offer = Offer.find(params[:id])
 
-    @offer_item = @offer.offer_items.new
+    @offer_item = OfferItem.new
     
     respond_to do |format|
       format.html # show.html.erb

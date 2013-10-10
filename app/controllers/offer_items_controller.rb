@@ -4,7 +4,7 @@ class OfferItemsController < ApplicationController
   	@offer_item = @offer.offer_items.new(params[:offer_item])
 
     if @offer_item.save
-      redirect_to offer_path(@offer), notice: 'Offeritem was successfully created.'
+      # redirect_to offer_path(@offer), notice: 'Offeritem was successfully created.'
     else
     	logger.info(@offer_item.errors.to_yaml)
       render "offers/show"
