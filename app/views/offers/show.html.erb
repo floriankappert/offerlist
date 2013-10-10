@@ -58,44 +58,7 @@
       </tr>
     </tbody>
   </table>
-  <div class="panel-heading">
-    <%= form_for [@offer, @offer_item], :remote => true, :html => { :role => "form", :class => "form-horizontal" } do |f| %>
-
-      <div class="form-group">
-        <%= f.label :position, :class => "col-lg-2 control-label" %>
-        <div class="col-lg-6"><%= f.text_field :position, :class => "form-control", :placeholder => "Position" %></div>
-      </div>
-      <div class="form-group">
-        <%= f.label :title, :class => "col-lg-2 control-label" %>
-        <div class="col-lg-6"><%= f.text_field :title, :class => "form-control", :placeholder => "Title" %></div>
-      </div>
-      <div class="form-group">
-        <%= f.label :gross, :class => "col-lg-2 control-label" %>
-        <div class="col-lg-6"><%= f.text_field :gross, :class => "form-control", :placeholder => "gross price" %></div>
-      </div>
-      <div class="form-group">
-        <%= f.label :net, :class => "col-lg-2 control-label" %>
-        <div class="col-lg-6"><%= f.text_field :net, :class => "form-control", :placeholder => "net price" %></div>
-      </div>
-      <div class="form-group">
-        <%= f.label :vat, :class => "col-lg-2 control-label" %>
-        <div class="col-lg-6"><%= f.text_field :vat, :class => "form-control", :placeholder => "vat" %></div>
-      </div>
-      <div class="form-group">
-        <%= f.label :vatrate, :class => "col-lg-2 control-label" %>
-        <div class="col-lg-6"><%= f.text_field :vatrate, :class => "form-control", :placeholder => "vatrate" %></div>
-      </div>
-      <div class="form-group">
-        <%= f.label :description, :class => "col-lg-2 control-label" %>
-        <div class="col-lg-6"><%= f.text_area :description, :class => "form-control", :placeholder => "description", :rows => "3" %></div>
-      </div>
-      <div class="form-group">
-        <div class="col-lg-offset-2 col-lg-6">
-          <%= f.submit :class => "btn btn-default btn-success" %>
-        </div>
-      </div>
-    <% end %>
-  </div>
+  
   <% if @offer.offer_items.present? %>
   <div class="panel-heading" style="text-align: center;">Offeritems</div>
   <table class="table ">
@@ -110,12 +73,46 @@
       <th></th>
     </thead>
     <tbody  id="offer_item_tbody">
-      <% @offer.offer_items.each do |offer_item| %>
+      <% @offer.offer_items.order("position  asc").each do |offer_item| %>
         <%= render offer_item %>
       <% end %>
     </tbody>
   </table>
   <% end %>
+  <div class="panel-heading">
+    <%= form_for [@offer, @offer_item], :remote => true, :html => { :role => "form", :class => "form-inline" } do |f| %>
+
+      <div class="form-group">
+        <%= f.label :position, :class => "sr-only"  %>
+        <%= f.text_field :position, :class => "form-control", :placeholder => "Position", :style => "width: 50px;" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :title, :class => "sr-only"  %>
+        <%= f.text_field :title, :class => "form-control", :placeholder => "Title", :style => "width: 515px;" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :gross, :class => "sr-only"  %>
+        <%= f.text_field :gross, :class => "form-control", :placeholder => "gross", :style => "width: 75px;" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :net, :class => "sr-only"  %>
+        <%= f.text_field :net, :class => "form-control", :placeholder => "net", :style => "width: 75px;" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :vat, :class => "sr-only" %>
+        <%= f.text_field :vat, :class => "form-control", :placeholder => "vat", :style => "width: 75px"  %>
+      </div>
+      <div class="form-group">
+        <%= f.label :vatrate, :class => "sr-only"  %>
+        <%= f.text_field :vatrate, :class => "form-control", :placeholder => "vatrate", :style => "width: 75px;" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :description, :class => "sr-only"  %>
+        <%= f.text_area :description, :class => "form-control", :placeholder => "description", :rows => "3", :style => "width: 900px;" %>
+      </div>      
+      <%= f.submit :class => "btn btn-default btn-success" %>
+    <% end %>
+  </div>
 </div>
 <div class="panel panel-default">
   <div class="panel-heading" style="text-align: center;">Credentials</div>
