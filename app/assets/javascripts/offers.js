@@ -27,6 +27,7 @@
     $('.offer_items').sortable({
         placeholder: "ui-state-highlight",
         forcePlaceholderSize: true,
+        handle: '.handle',
         update: function() {
           return $.post($(this).data('update-url'), $(this).sortable('serialize'));
         }

@@ -18,6 +18,8 @@ module OffersHelper
 		"<span class='glyphicon glyphicon-chevron-left'></span>".html_safe
 		when "list"
 		"<span class='glyphicon glyphicon-th-list'></span>".html_safe
+	when "handle"
+		"<span class='glyphicon glyphicon-resize-vertical handle'></span>".html_safe
 		else
 		"<span class='glyphicon glyphicon-tree-conifer'></span>".html_safe			
 		end
