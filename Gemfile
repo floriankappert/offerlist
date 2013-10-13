@@ -30,3 +30,6 @@ gem 'jquery-ui-rails'
 # pagination
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
+
+# in place editing
+gem 'best_in_place'

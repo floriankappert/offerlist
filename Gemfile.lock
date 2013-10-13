@@ -37,6 +37,9 @@ GEM
       i18n (= 0.6.1)
       multi_json (~> 1.0)
     arel (3.0.2)
+    best_in_place (2.1.0)
+      jquery-rails
+      rails (~> 3.1)
     better_errors (0.8.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -143,6 +146,7 @@ PLATFORMS
 
 DEPENDENCIES
   anjlab-bootstrap-rails!
+  best_in_place
   better_errors
   binding_of_caller
   bootstrap-datepicker-rails

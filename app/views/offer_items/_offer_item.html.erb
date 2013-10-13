@@ -6,12 +6,16 @@
   <td><%= offer_item.vat %></td>
   <td><%= offer_item.vatrate %></td>
   <td><%= offer_item.gross %></td>
+  <td><%= link_to icon("edit"), edit_offer_offer_item_path(offer_item.offer, offer_item),  :remote => true, :class => "btn btn-danger btn-small" %></td>
   <td><%= link_to icon("destroy"), [offer_item.offer, offer_item], method: :delete, data: { confirm: 'Are you sure to delete this offer item?' }, :class => "btn btn-danger btn-small", :remote => true %></td>
 </tr>
 <% if offer_item.description %>
 <tr id="offer_item_l<%= offer_item.id %>">
   <td></td>
-  <td colspan="6"><%= offer_item.description %></td>
+  <td colspan="7"><%= offer_item.description %></td>
   <td></td>
 </tr>
 <% end %>
+<tr id="offer_item_e<%= offer_item.id %>">
+  <td colspan="9" class="edit_container"></td>
+</tr>

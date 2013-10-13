@@ -46,7 +46,7 @@
     <tbody>
       <tr>
         <th>Company</th>
-        <td><%= @offer.company %></td>
+        <td><%= best_in_place @offer, :company %></td>
       </tr>
       <tr>
         <th>Projectname</th>
@@ -71,8 +71,9 @@
       <th>Rate</th>
       <th>Gross</th>
       <th></th>
+      <th></th>
     </thead>
-    <tbody  id="offer_item_tbody">
+    <tbody id="offer_item_tbody">
       <% @offer.offer_items.order("position  asc").each do |offer_item| %>
         <%= render offer_item %>
       <% end %>
@@ -80,38 +81,7 @@
   </table>
   <% end %>
   <div class="panel-heading">
-    <%= form_for [@offer, @offer_item], :remote => true, :html => { :role => "form", :class => "form-inline" } do |f| %>
-
-      <div class="form-group">
-        <%= f.label :position, :class => "sr-only"  %>
-        <%= f.text_field :position, :class => "form-control", :placeholder => "Position", :style => "width: 50px;" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :title, :class => "sr-only"  %>
-        <%= f.text_field :title, :class => "form-control", :placeholder => "Title", :style => "width: 515px;" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :gross, :class => "sr-only"  %>
-        <%= f.text_field :gross, :class => "form-control", :placeholder => "gross", :style => "width: 75px;" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :net, :class => "sr-only"  %>
-        <%= f.text_field :net, :class => "form-control", :placeholder => "net", :style => "width: 75px;" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :vat, :class => "sr-only" %>
-        <%= f.text_field :vat, :class => "form-control", :placeholder => "vat", :style => "width: 75px"  %>
-      </div>
-      <div class="form-group">
-        <%= f.label :vatrate, :class => "sr-only"  %>
-        <%= f.text_field :vatrate, :class => "form-control", :placeholder => "vatrate", :style => "width: 75px;" %>
-      </div>
-      <div class="form-group">
-        <%= f.label :description, :class => "sr-only"  %>
-        <%= f.text_area :description, :class => "form-control", :placeholder => "description", :rows => "3", :style => "width: 900px;" %>
-      </div>      
-      <%= f.submit :class => "btn btn-default btn-success" %>
-    <% end %>
+    <%= render 'offer_items/offer_item_form' %>
   </div>
 </div>
 <div class="panel panel-default">

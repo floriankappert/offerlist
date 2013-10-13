@@ -1,5 +1,6 @@
 class Offer < ActiveRecord::Base
   attr_accessible :company, :offer_number, :title, :project_name, :offer_date, :offer_due_date, :text
+  cattr_accessor :current_id
 
   has_many :offer_items
 

@@ -15,6 +15,9 @@ class OffersController < ApplicationController
     @offer = Offer.find(params[:id])
 
     @offer_item = OfferItem.new
+
+    @last_offer_item_position = @offer.offer_items.last.position + 1
+
     
     respond_to do |format|
       format.html # show.html.erb
@@ -63,10 +66,14 @@ class OffersController < ApplicationController
   def update
     @offer = Offer.find(params[:id])
 
-    if @offer.update_attributes(params[:offer])
-      redirect_to @offer, notice: 'Offer was successfully updated.'
-    else
-      render action: "edit" 
+    respond_to do |format|
+      if @offer.update_attributes(params[:offer])
+        format.html {redirect_to @offer, notice: 'Offer was successfully updated.' }
+        format.json { render json: @offer}
+      else
+        format.html {render action: "edit" }
+        format.json {respond_width_bip(@offer)}
+      end
     end
   end
 

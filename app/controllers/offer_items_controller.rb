@@ -11,7 +11,19 @@ class OfferItemsController < ApplicationController
     end
   end
 
+  def edit
+    @offer = Offer.find(params[:offer_id])
+    @offer_item = OfferItem.find(params[:id])
+
+    @last_offer_item_position = @offer_item.position
+  end
+
   def update
+    @offer = Offer.find(params[:offer_id])
+    @offer_item = OfferItem.find(params[:id])
+
+    @offer_item.update_attributes(params[:offer_item]) 
+    
   end
 
   def destroy

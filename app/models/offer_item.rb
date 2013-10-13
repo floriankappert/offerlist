@@ -9,4 +9,7 @@ class OfferItem < ActiveRecord::Base
   validates :vat, :presence => {:message => 'Please enter the vat'}
   validates :vatrate, :presence => {:message => 'Please enter the vat rate'}
   validates :position, :presence => {:message => 'Please enter the offeritem position'}
+
+  default_scope { where( offer_id: Offer.current_id ) }
+
 end
