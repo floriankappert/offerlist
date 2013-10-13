@@ -36,4 +36,13 @@ class OfferItemsController < ApplicationController
       redirect_to offer_path(@offer), notice: 'Offeritem could not be deleted.'
     end
   end
+
+  def sort 
+    params[:offer_item_wrapper].each_with_index do |id, index|
+      OfferItem.update_all({position: index+1}, {id: id})
+      logger.info "=========> " + id
+    end
+    render nothing: true
+  end
+
 end

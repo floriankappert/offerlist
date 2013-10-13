@@ -1,7 +1,9 @@
 Offerlist::Application.routes.draw do
   
   resources :offers do
-    resources :offer_items
+    resources :offer_items do
+      collection { post :sort }
+    end
     
   	member do
   		get "activate"

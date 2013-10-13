@@ -1,3 +1,4 @@
 $("#offer_item_<%= @offer_item.id %>").hide();
 $("#offer_item_l<%= @offer_item.id %>").hide();
+$("#offer_item_e<%= @offer_item.id %>").show();
 $('#offer_item_e<%= @offer_item.id %> .edit_container').append("<%= j render 'offer_item_form' %>");

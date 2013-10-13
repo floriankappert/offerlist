@@ -15,9 +15,6 @@ class OffersController < ApplicationController
     @offer = Offer.find(params[:id])
 
     @offer_item = OfferItem.new
-
-    @last_offer_item_position = @offer.offer_items.last.position + 1
-
     
     respond_to do |format|
       format.html # show.html.erb

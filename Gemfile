@@ -33,3 +33,7 @@ gem 'will_paginate-bootstrap'
 
 # in place editing
 gem 'best_in_place'
+
+# Sorting with drag and drop
+gem 'acts_as_list'
+

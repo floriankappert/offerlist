@@ -23,4 +23,15 @@
         .appendTo( ul );
     };;
    }
+
+    $('.offer_items').sortable({
+        placeholder: "ui-state-highlight",
+        forcePlaceholderSize: true,
+        update: function() {
+          return $.post($(this).data('update-url'), $(this).sortable('serialize'));
+        }
+    });
+
+    $('.offer_items').disableSelection();
+
   })

@@ -1,13 +1,11 @@
-if ($("#offer_item_<%= @offer_item.id %>").prev().length > 0) {
-	var $previousrow = $("#offer_item_<%= @offer_item.id %>").prev();
+if ($("#offer_item_wrapper_<%= @offer_item.id %>").prev().length > 0) {
+	var $previousrow = $("#offer_item_wrapper_<%= @offer_item.id %>").prev();
 }
 
-$("#offer_item_<%= @offer_item.id %>").remove();
-$("#offer_item_l<%= @offer_item.id %>").remove();
-$("#offer_item_e<%= @offer_item.id %>").remove();
+$("#offer_item_wrapper_<%= @offer_item.id %>").remove();
 
 if ($previousrow) {
 	$previousrow.after("<%= j render @offer_item %>");
 } else {
-	$("#offer_item_tbody").prepend("<%= j render @offer_item %>");
+	$(".offer_items").prepend("<%= j render @offer_item %>");
 }

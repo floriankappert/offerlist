@@ -63,20 +63,23 @@
   <div class="panel-heading" style="text-align: center;">Offeritems</div>
   <table class="table ">
     <thead>
-      <th>Pos</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Net</th>
-      <th>Vat</th>
-      <th>Rate</th>
-      <th>Gross</th>
-      <th></th>
-      <th></th>
+      <th style="width: 75px;">Pos</th>
+      <th style="width: 345px;">Title</th>
+      <th style="width: 75px;">Net</th>
+      <th style="width: 75px;">Vat</th>
+      <th style="width: 50px;">Rate</th>
+      <th style="width: 50px;">Gross</th>
+      <th style="width: 50px;"></th>
+      <th style="width: 50px;"></th>
     </thead>
     <tbody id="offer_item_tbody">
-      <% @offer.offer_items.order("position  asc").each do |offer_item| %>
-        <%= render offer_item %>
-      <% end %>
+      <tr>
+        <td colspan="8" class="offer_items" data-update-url="<%= sort_offer_offer_items_url(@offer.id) %>">
+          <% @offer.offer_items.order("position  asc").each do |offer_item| %>
+            <%= render offer_item %>
+          <% end %>
+        </td>
+      </tr>
     </tbody>
   </table>
   <% end %>

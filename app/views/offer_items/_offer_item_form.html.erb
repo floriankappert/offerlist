@@ -1,19 +1,11 @@
 <%= form_for [@offer, @offer_item], :remote => true, :html => { :role => "form", :class => "form-inline" } do |f| %>
 <table>
 <tr>  
-  <td>
-    <div class="form-group">
-      <%= f.label :position, :class => "sr-only"  %>
-      <%= f.hidden_field :position, :value => @last_offer_item_position %>
-
-      <%= text_field_tag "Pos" , @last_offer_item_position, :disabled => true, :class => "form-control", :style => "width: 35px;" %>
-
-    </div>
-  </td>
+  <%= f.hidden_field :position, :value => @last_offer_item_position %>
   <td>
     <div class="form-group">
       <%= f.label :title, :class => "sr-only"  %>
-      <%= f.text_field :title, :class => "form-control", :placeholder => "Title", :style => "width: 555px;" %>
+      <%= f.text_field :title, :class => "form-control", :placeholder => "Title", :style => "width: 590px;" %>
     </div>
   </td>
   <td>
