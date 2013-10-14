@@ -25,6 +25,8 @@
       <th><%= sortable "offer_number" %></th>
       <th><%= sortable "company" %></th>
       <th>Title</th>
+      <th><%= sortable "count_offer_items", "Offer Items" %></th>
+      <th><%= sortable "total_offer_items", "Total" %></th>
       <th></th>
     </tr>
   </thead>
@@ -38,12 +40,15 @@
       </td>
       <td><%= offer.company %></td>
       <td><%= offer.title %> <%= offer.offer_items.count %></td>
+      <td><%= offer.offer_items.count %></td>
+      <td><%= number_to_currency(offer.offer_total, {:unit => "€"}) %></td>
       <td style="text-align: right;">
-      <%= link_to icon("show"), offer, :class => "btn btn-default btn-small" %>
-      <%= link_to icon("edit"), edit_offer_path(offer), :class => "btn btn-default btn-small" %>
       <% if offer.draft %>
       <%= link_to icon("destroy"), offer_path(offer), :method => :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-small" %>
       <% end %>
+      <%= link_to icon("show"), offer, :class => "btn btn-default btn-small" %>
+      <%= link_to icon("edit"), edit_offer_path(offer), :class => "btn btn-default btn-small" %>
+      
       </td>
     </tr>
   <% end %>

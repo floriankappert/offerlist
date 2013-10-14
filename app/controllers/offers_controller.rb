@@ -2,7 +2,7 @@ class OffersController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @offers = Offer.order(sort_column + ' ' + sort_direction).paginate(:page => params[:offers_page])
+    @offers = Offer.joins("left join offer_items on offers.id = offer_items.offer_id").select("offers.*, sum(1) as count_offer_items, sum(gross) as total_offer_items").group("offers.id").order(sort_column + ' ' + sort_direction).paginate(:page => params[:offers_page])
     @drafts = Offer.draft.order(sort_column + ' ' + sort_direction).paginate(:page => params[:drafts_page])
   end
 
@@ -15,6 +15,8 @@ class OffersController < ApplicationController
     @offer = Offer.find(params[:id])
 
     @offer_item = OfferItem.new
+
+    @offer_total = @offer.offer_items.sum('gross')
     
     if @offer.offer_items.count > 0
       @last_offer_item_position = @offer.offer_items.maximum(:position) + 1 
@@ -95,7 +97,7 @@ class OffersController < ApplicationController
 
   private
   def sort_column
-    Offer.column_names.include?(params[:sort]) ? params[:sort] : "offer_number"
+    (Offer.column_names + ["total_offer_items"] + ["count_offer_items"]).include?(params[:sort]) ? params[:sort] : "offer_number"
   end
   
   def sort_direction

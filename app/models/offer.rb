@@ -2,7 +2,7 @@ class Offer < ActiveRecord::Base
   attr_accessible :company, :offer_number, :title, :project_name, :offer_date, :offer_due_date, :text
   cattr_accessor :current_id
 
-  has_many :offer_items
+  has_many :offer_items, dependent: :destroy
 
   validates :company, :presence => {:message => 'Please enter the company name'}
   validates :title, :presence => {:message => 'Please enter the title of your offer'}
@@ -15,6 +15,10 @@ class Offer < ActiveRecord::Base
     val = 0 if val.nil?
     self.offer_number = val + 1
   end  
+
+  def offer_total
+    offer_items.sum('gross')
+  end
 
   default_scope where(:data_deleted => false)
 

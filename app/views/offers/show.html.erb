@@ -63,8 +63,8 @@
   <div class="offer_items_wrapper" style="<%= @offer.offer_items.present? ? "" : "display: none;" %>">
     <table class="table ">
       <thead>
-        <th style="width: 35px;">Pos</th>
-        <th style="width: 385px;">Title</th>
+        <th style="width: 55px;">Pos</th>
+        <th style="width: 355px;">Title</th>
         <th style="width: 75px; text-align: right;">Net</th>
         <th style="width: 75px; text-align: right;">Vat</th>
         <th style="width: 50px; text-align: right;">Rate</th>
@@ -82,6 +82,15 @@
           </td>
         </tr>
       </tbody>
+      <tfoot>
+        <tr>
+          <td><strong>Total</strong></td>
+          <td colspan="5" style="text-align: right;">
+            <strong class="js-offer-total"><%= number_to_currency(@offer_total, {:unit => "€"}) %></strong>
+          </td>
+          <td colspan="3"></td>
+        </tr>
+      </tfoot>
     </table>
   </div>
   <div class="panel-heading">

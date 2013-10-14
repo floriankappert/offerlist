@@ -15,10 +15,8 @@ class OfferItem < ActiveRecord::Base
   before_save :check_sums
 
   private
-
   def check_sums 
-
-  	if (gross == net + vat) && (vat == net * (vatrate/100))
+  	if (gross == net + vat) && (vat == net * (vatrate * 0.01))
   		true
   	else
   		errors.add(:gross, "Gross not equal to net + vat") 
