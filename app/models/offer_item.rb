@@ -18,7 +18,7 @@ class OfferItem < ActiveRecord::Base
 
   def check_sums 
 
-  	if (gross == net + vat)
+  	if (gross == net + vat) && (vat == net * (vatrate/100))
   		true
   	else
   		errors.add(:gross, "Gross not equal to net + vat") 
