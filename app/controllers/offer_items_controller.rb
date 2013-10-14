@@ -40,9 +40,8 @@ class OfferItemsController < ApplicationController
   def sort 
     params[:offer_item_wrapper].each_with_index do |id, index|
       OfferItem.update_all({position: index+1}, {id: id})
-      logger.info "=========> " + id
     end
-    render nothing: true
+    @offer_items = OfferItem.where(:id => params[:offer_item_wrapper]).all
   end
 
 end

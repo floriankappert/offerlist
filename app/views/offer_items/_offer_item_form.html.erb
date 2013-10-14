@@ -1,35 +1,41 @@
+<% allow_cancel ||= false %>
 <%= form_for [@offer, @offer_item], :remote => true, :html => { :role => "form", :class => "form-inline" } do |f| %>
-<table>
+<table class="offer_item_form">
 <tr>  
   <%= f.hidden_field :position, :value => @last_offer_item_position %>
   <td>
     <div class="form-group">
       <%= f.label :title, :class => "sr-only"  %>
-      <%= f.text_field :title, :class => "form-control", :placeholder => "Title", :style => "width: 590px;" %>
+      <%= f.text_field :title, :class => "form-control", :placeholder => "Title", :style => "width: 400px;" %>
     </div>
   </td>
+  
   <td>
-    <div class="form-group">
-      <%= f.label :gross, :class => "sr-only"  %>
-      <%= f.text_field :gross, :class => "form-control", :placeholder => "gross", :style => "width: 75px;" %>
-    </div>
-  </td>
-  <td>
-    <div class="form-group">
+    <div class="input-group">
       <%= f.label :net, :class => "sr-only"  %>
-      <%= f.text_field :net, :class => "form-control", :placeholder => "net", :style => "width: 75px;" %>
+      <%= f.text_field :net, :class => "form-control", :placeholder => "net", :style => "width: 120px; text-align: right;" %>
+      <span class="input-group-addon">€</span>
     </div>
   </td>
   <td>
-    <div class="form-group">
-      <%= f.label :vat, :class => "sr-only" %>
-      <%= f.text_field :vat, :class => "form-control", :placeholder => "vat", :style => "width: 75px"  %>
-    </div>
-  </td>
-  <td>
-    <div class="form-group">
+    <div class="input-group">
       <%= f.label :vatrate, :class => "sr-only"  %>
-      <%= f.text_field :vatrate, :class => "form-control", :placeholder => "vatrate", :style => "width: 75px;" %>
+      <%= f.text_field :vatrate, :class => "form-control", :placeholder => "vatrate", :style => "width: 45px;" %>
+      <span class="input-group-addon">%</span>
+    </div>
+  </td>
+  <td>
+    <div class="input-group">
+      <%= f.label :vat, :class => "sr-only" %>
+      <%= f.text_field :vat, :class => "form-control", :placeholder => "vat", :style => "width: 75px;  text-align: right;"  %>
+      <span class="input-group-addon">€</span>
+    </div>
+  </td>
+  <td>
+    <div class="input-group">
+      <%= f.label :gross, :class => "sr-only"  %>
+      <%= f.text_field :gross, :class => "form-control", :placeholder => "gross", :style => "width: 110px; text-align: right;"  %>
+      <span class="input-group-addon">€</span>
     </div>
   </td>
 </tr>
@@ -40,6 +46,9 @@
       <%= f.text_area :description, :class => "form-control", :placeholder => "description", :rows => "3", :style => "width: 900px;" %>
     </div> 
     <%= f.submit :class => "btn btn-default btn-success" %>
+    <% if allow_cancel  %> 
+      <a href="#" class="cancel_form" data-id="<%= @offer_item.id %>">cancel</a>
+    <% end %> 
   </td>
 </tr>
 </table>

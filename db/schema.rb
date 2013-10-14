@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131004110823) do
+ActiveRecord::Schema.define(:version => 20131014153602) do
 
   create_table "offer_items", :force => true do |t|
     t.integer  "offer_id"
@@ -20,10 +20,10 @@ ActiveRecord::Schema.define(:version => 20131004110823) do
     t.integer  "position"
     t.decimal  "net"
     t.decimal  "vat"
-    t.integer  "vatrate"
+    t.integer  "vatrate",     :default => 19
     t.decimal  "gross"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   add_index "offer_items", ["offer_id"], :name => "index_offer_items_on_offer_id"

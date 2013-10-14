@@ -22,4 +22,13 @@
   $(document).ready(function(){
     $(".pagination ul").addClass("pagination");
     $('.best_in_place').best_in_place();
+
+    // Sets values for vat and gross in offer items form
+    $(".js-offer-wrapper").on("focusout", "#offer_item_net" ,function(e) {
+    	var p = $(this).closest("tr");
+
+    	p.find("#offer_item_vat").val(p.find("#offer_item_net").val() * ( p.find("#offer_item_vatrate").val() / 100) );
+		p.find("#offer_item_gross").val(p.find("#offer_item_net").val() * ( ( 1 + p.find("#offer_item_vatrate").val() ) / 100) );
+	});
+
   })

@@ -35,4 +35,15 @@
 
     $('.offer_items').disableSelection();
 
+    $(".offer_items_wrapper").on("click", ".cancel_form" ,function(e) {
+      e.preventDefault();
+
+      $("#offer_item_" + $(this).data('id')).show();
+      $("#offer_item_l" + $(this).data('id')).show();
+      $("#offer_item_e" + $(this).data('id')).hide();
+
+      $("#offer_item_e" + $(this).data('id') + " .edit_container").empty();
+      return(false);
+    });
+
   })

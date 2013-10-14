@@ -16,6 +16,12 @@ class OffersController < ApplicationController
 
     @offer_item = OfferItem.new
     
+    if @offer.offer_items.count > 0
+      @last_offer_item_position = @offer.offer_items.maximum(:position) + 1 
+    else
+      @last_offer_item_position = 1      
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @offer}

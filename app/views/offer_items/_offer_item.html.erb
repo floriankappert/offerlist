@@ -1,11 +1,11 @@
 <table class="table table-condensed table-bordered" id="offer_item_wrapper_<%= offer_item.id %>" >
   <tr id="offer_item_<%= offer_item.id %>">
-    <td style="width: 35px;"><%= offer_item.position %></td>
+    <td style="width: 35px; text-align: center;"><span class="position"><%= offer_item.position %></span></td>
     <td style="width: 385px;"><%= offer_item.title %></td>
-    <td style="width: 75px;"><%= offer_item.net %></td>
-    <td style="width: 75px;"><%= offer_item.vat %></td>
-    <td style="width: 50px;"><%= offer_item.vatrate %></td>
-    <td style="width: 50px;"><%= offer_item.gross %></td>
+    <td style="width: 75px; text-align: right;"><%= number_to_currency(offer_item.net, :unit => "€") %></td>
+    <td style="width: 75px; text-align: right;"><%= number_to_currency(offer_item.vat, :unit => "€") %></td>
+    <td style="width: 50px; text-align: right;"><%= number_to_percentage(offer_item.vatrate, :unit => "%", :precision => 2) %></td>
+    <td style="width: 50px; text-align: right;"><%= number_to_currency(offer_item.gross, :unit => "€") %></td>
     <td style="width: 50px;"><%= link_to icon("edit"), edit_offer_offer_item_path(offer_item.offer, offer_item),  :remote => true, :class => "btn btn-danger btn-small" %></td>
     <td style="width: 50px;"><%= link_to icon("destroy"), [offer_item.offer, offer_item], method: :delete, data: { confirm: 'Are you sure to delete this offer item?' }, :class => "btn btn-danger btn-small", :remote => true %></td>
     <td style="width: 50px;"><%= icon("handle") %></td>

@@ -37,7 +37,7 @@
 
 <p id="notice"><%= notice %></p>
 
-<div class="panel panel-default">
+<div class="panel panel-default js-offer-wrapper">
   <!-- Default panel contents -->
   <div class="panel-heading"><%= @offer.offer_number %> | <%= @offer.title %> | <%= link_to "download json object", polymorphic_path( @offer, :format => :json ), :target => "_blank" %> | <%= @offer.draft ? "Draft" : "Activated" %>
   </div>
@@ -59,31 +59,31 @@
     </tbody>
   </table>
   
-  <% if @offer.offer_items.present? %>
   <div class="panel-heading" style="text-align: center;">Offeritems</div>
-  <table class="table ">
-    <thead>
-      <th style="width: 35px;">Pos</th>
-      <th style="width: 385px;">Title</th>
-      <th style="width: 75px;">Net</th>
-      <th style="width: 75px;">Vat</th>
-      <th style="width: 50px;">Rate</th>
-      <th style="width: 50px;">Gross</th>
-      <th style="width: 50px;"></th>
-      <th style="width: 50px;"></th>
-      <th style="width: 50px;"></th>
-    </thead>
-    <tbody id="offer_item_tbody">
-      <tr>
-        <td colspan="9" class="offer_items" data-update-url="<%= sort_offer_offer_items_url(@offer.id) %>" style="padding: 0;">
-          <% @offer.offer_items.order("position  asc").each do |offer_item| %>
-            <%= render offer_item %>
-          <% end %>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <% end %>
+  <div class="offer_items_wrapper" style="<%= @offer.offer_items.present? ? "" : "display: none;" %>">
+    <table class="table ">
+      <thead>
+        <th style="width: 35px;">Pos</th>
+        <th style="width: 385px;">Title</th>
+        <th style="width: 75px; text-align: right;">Net</th>
+        <th style="width: 75px; text-align: right;">Vat</th>
+        <th style="width: 50px; text-align: right;">Rate</th>
+        <th style="width: 50px; text-align: right;">Gross</th>
+        <th style="width: 50px;"></th>
+        <th style="width: 50px;"></th>
+        <th style="width: 50px;"></th>
+      </thead>
+      <tbody id="offer_item_tbody">
+        <tr>
+          <td colspan="9" class="offer_items" data-update-url="<%= sort_offer_offer_items_url(@offer.id) %>" style="padding: 0;">
+            <% @offer.offer_items.order("position  asc").each do |offer_item| %>
+              <%= render offer_item %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <div class="panel-heading">
     <%= render 'offer_items/offer_item_form' %>
   </div>
