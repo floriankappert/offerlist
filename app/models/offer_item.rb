@@ -11,16 +11,12 @@ class OfferItem < ActiveRecord::Base
   validates :vat, :presence => {:message => 'Please enter the vat'}
   validates :vatrate, :presence => {:message => 'Please enter the vat rate'}
   validates :position, :presence => {:message => 'Please enter the offeritem position'}
-
-  before_save :check_sums
+  validate :valid_amounts
 
   private
-  def check_sums 
-  	if (gross == net + vat) && (vat == net * (vatrate * 0.01))
-  		true
-  	else
-  		errors.add(:gross, "Gross not equal to net + vat") 
-  		false
-  	end
-  end
+    def valid_amounts 
+    	unless (gross == net + vat) && (vat == net * (vatrate * 0.01))
+    		errors.add(:gross, "Gross not equal to net + vat") 
+    	end
+    end
 end

@@ -13,25 +13,17 @@ class OffersController < ApplicationController
 
   def show
     @offer = Offer.find(params[:id])
-
     @offer_item = OfferItem.new
-
     @offer_total = @offer.offer_items.sum('gross')
-    
-    if @offer.offer_items.count > 0
-      @last_offer_item_position = @offer.offer_items.maximum(:position) + 1 
-    else
-      @last_offer_item_position = 1      
-    end
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @offer}
     end
   end
 
   def search 
-    @offers = Offer.where("lower (company) like ?", params[:q].downcase)
+    @offers = Offer.where("lower(company) like ?", params[:q].downcase)
   end
 
   def new
@@ -46,15 +38,12 @@ class OffersController < ApplicationController
 
   def activate 
     @offer = Offer.find(params[:id])
-    @offer.draft = false
-
-    if @offer.save
-      msg = 'Offer was successfully activated.'
+   
+    if @offer.activate
+      redirect_to offer_path, notice: 'Offer was successfully activated.'
     else
-      msg = 'Offer could not be activated.'
+     redirect_to offer_path, notice: 'Offer could not be activated.'
     end
-
-    redirect_to offer_path, notice: msg 
   end
 
   def create
@@ -65,7 +54,6 @@ class OffersController < ApplicationController
     else
       render action: "new"
     end
-    
   end
 
   def update

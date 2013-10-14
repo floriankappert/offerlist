@@ -2,7 +2,6 @@
 <%= form_for [@offer, @offer_item], :remote => true, :html => { :role => "form", :class => "form-inline" } do |f| %>
 <table class="offer_item_form">
 <tr>  
-  <%= f.hidden_field :position, :value => @last_offer_item_position %>
   <td>
     <div class="form-group">
       <%= f.label :title, :class => "sr-only"  %>
